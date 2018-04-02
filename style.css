@@ -1,0 +1,24 @@
+.sortorder::after{
+    content: '\25b2';
+}
+
+.sortorder.reverseStyle::after{
+    content: '\25bc';
+}
+
+table input {
+    max-width: 50px;
+}
+div.one-inside label{
+    width: 100%;
+    text-align: right;
+    padding: 10px 15%;
+    background-color: white;
+}
+
+div.four-inside{
+    text-align: center;
+}
+div.four-inside button{
+    width: 22%;
+}
