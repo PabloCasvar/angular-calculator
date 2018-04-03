@@ -13,6 +13,7 @@ app.component('calculadora', {
             this.memory = "0";
             this.operation = "";
             this.memoryM = "0"; 
+            this.toClear = false;
        }
 
     this.buttonClicked = function(param){
@@ -20,8 +21,10 @@ app.component('calculadora', {
                 this.memoryM = "0";
             }
             else if(param === "MR"){
+                this.display = this.memoryM;
+            }
+            else if(param === "MS"){
                 this.memoryM = String(this.display);
-                this.clearDisplay();
             }
             else if(param === "MM"){
                 this.calculateMemory("+");
@@ -35,37 +38,42 @@ app.component('calculadora', {
                 this.memoryM = "";
             }
             else if(param === "C"){
-                this.display = "0";
                 this.clearDisplay();
             }
             else if(param === "divide"){
                 this.memory = Number(this.display);
                 this.operation = "/";
-                this.clearDisplay();
+                this.toClear = true;
                 console.log(this.memory);
             }
             else if(param === "equal"){
                 this.calculate();
+                this.operation = "";
             }
             else if(param === "plus"){
                 this.memory = Number(this.display);
                 this.operation = "+";
-                this.clearDisplay();
+                this.toClear = true;
                 console.log(this.memory);
             }
             else if(param === "minus"){
                 this.memory = String(this.display);
                 this.operation = "-";
-                this.clearDisplay();
+                this.toClear = true;
                 console.log(this.memory);
             }
             else if(param === "mult"){
                 this.memory = String(this.display);
                 this.operation= "*";
-                this.clearDisplay();
+                this.toClear = true;
                 console.log(this.memory);
             }
             else{
+                if(this.toClear){
+                    this.clearDisplay(); 
+                    this.toClear = false;
+                }
+                                      
                 if(param != '.'){
                     if(String(this.display) === "0")
                         this.display = "";
@@ -74,8 +82,6 @@ app.component('calculadora', {
                     if(!String(this.display).includes("."))
                         this.display += param;
                 }
-
-                
             }
        }
     
